@@ -1,3 +1,3 @@
-pub fn cmd_cd(args: Vec<&str>) -> i8 {
+pub fn cmd_cd(args: &Vec<String>) -> i8 {
     return 1;
 }

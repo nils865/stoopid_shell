@@ -42,13 +42,11 @@ fn args_handler(args: &Vec<&str>) -> Vec<String> {
     return cmd_args;
 }
 
-fn syscalls(args: Vec<&str>) -> i8 {
-    let cmd_args = args_handler(&args);
+fn syscalls(command: &str, args: &Vec<String>) -> i8 {
+    let mut cmd = Command::new(command);
 
-    let mut cmd = Command::new(args[0]);
-
-    if cmd_args.len() > 0 {
-        cmd.args(&cmd_args);
+    if args.len() > 0 {
+        cmd.args(args);
     }
 
     return match cmd.status() {
@@ -60,17 +58,20 @@ fn syscalls(args: Vec<&str>) -> i8 {
             }
         }
         Err(_) => {
-            println!("Command not found: {}", args[0]);
+            println!("Command not found: {}", command);
             1
         }
     };
 }
 
 pub fn input_handler(args: Vec<&str>) -> i8 {
-    return match args[0] {
-        "cd" => cmd_cd(args),
+    let command = args[0];
+    let arguments = args_handler(&args);
+
+    return match command {
+        "cd" => cmd_cd(&arguments),
         "exit" => -1,
 
-        _ => syscalls(args),
+        _ => syscalls(&command, &arguments),
     };
 }
