@@ -6,7 +6,7 @@ use commands::input_handler;
 fn main() {
     let running = true;
     let prompt = "➜  ";
-    let mut exit_code: i8 = 0;
+    let mut exit_code: i8;
 
     while running {
         let mut command = String::new();

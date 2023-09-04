@@ -6,7 +6,7 @@ fn syscalls(args: Vec<&str>) -> i8 {
     let mut cmd = Command::new(args[0]);
 
     if cmd_args.len() > 0 {
-        cmd.arg(cmd_args.join(" "));
+        cmd.args(&cmd_args);
     }
 
     return match cmd.status() {
