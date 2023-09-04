@@ -10,19 +10,21 @@ pub fn get_prompt(exit_code: i8) -> String {
         prompt.push_str(&"➜  ".red().to_string());
     }
 
+    let dir = env::current_dir().unwrap().display().to_string();
+
+    let mut display_dir = dir.split("/").last().unwrap();
+
+    if display_dir == "" {
+        display_dir = "/";
+    } else if dir == env::var("HOME").unwrap() {
+        display_dir = "~";
+    }
+
     prompt.push_str(
-        &format!(
-            "{} ",
-            env::current_dir()
-                .expect("Failed to get current directory")
-                .display()
-                .to_string()
-                .split("/")
-                .last()
-                .unwrap()
-        )
-        .bright_cyan()
-        .to_string(),
+        &format!("{} ", display_dir)
+            .bright_cyan()
+            .to_string()
+            .clone(),
     );
 
     return prompt.bold().to_string();
