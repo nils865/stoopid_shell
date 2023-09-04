@@ -1,22 +1,30 @@
 use std::process::Command;
 
 fn syscalls(args: Vec<&str>) -> i8 {
-    let mut cmd_args: Vec<&str> = vec![];
+    let mut cmd_args: Vec<String> = vec![];
 
-    for i in 1..args.len() {
-        let mut arg = args[i];
+    let mut i = 1;
+
+    while i < args.len() {
+        let mut arg: String = args[i].to_string();
 
         if arg.starts_with("\"") {
+            i += 1;
+
             for j in i..args.len() {
-                arg = args[j];
+                arg = format!("{} {}", arg, args[j]);
 
                 if arg.ends_with("\"") {
                     break;
                 }
+
+                i += 1;
             }
         }
 
         cmd_args.push(arg);
+
+        i += 1;
     }
 
     let mut cmd = Command::new(args[0]);
