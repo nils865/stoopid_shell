@@ -1,5 +1,6 @@
 use colored::Colorize;
 use std::env;
+use stoopid_shell::get_folder_splitter;
 
 pub fn get_prompt(exit_code: i8) -> String {
     let mut prompt = String::new();
@@ -12,12 +13,7 @@ pub fn get_prompt(exit_code: i8) -> String {
 
     let dir = env::current_dir().unwrap().display().to_string();
 
-    let splitter = match env::consts::OS {
-        "windows" => "\\",
-        _ => "/",
-    };
-
-    let mut display_dir = dir.split(splitter).last().unwrap();
+    let mut display_dir = dir.split(&get_folder_splitter()).last().unwrap();
 
     if display_dir == "" {
         display_dir = "/";

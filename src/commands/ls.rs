@@ -1,5 +1,6 @@
 use colored::Colorize;
 use std::{env, fs, path::Path};
+use stoopid_shell::get_folder_splitter;
 
 pub fn cmd_ls(args: &Vec<String>) -> i8 {
     let dir: String;
@@ -24,15 +25,10 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
     for file in files {
         let path = file.unwrap().path();
 
-        let splitter = match env::consts::OS {
-            "windows" => "\\",
-            _ => "/",
-        };
-
         let name = String::from(
             path.display()
                 .to_string()
-                .split(splitter)
+                .split(&get_folder_splitter())
                 .last()
                 .unwrap_or_default(),
         );
