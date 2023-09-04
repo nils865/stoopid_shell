@@ -4,7 +4,7 @@ A new Shell written in rust
 
 ## Roadmap
 
-- [ ] Add basic shell functionality
+- [X] Add basic shell functionality
 - [ ] Reimplement alot of basic shell features
   - [ ] echo
   - [ ] ls
