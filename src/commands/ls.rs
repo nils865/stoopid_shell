@@ -24,10 +24,15 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
     for file in files {
         let path = file.unwrap().path();
 
+        let splitter = match env::consts::OS {
+            "windows" => "\\",
+            _ => "/",
+        };
+
         let name = String::from(
             path.display()
                 .to_string()
-                .split("/")
+                .split(splitter)
                 .last()
                 .unwrap_or_default(),
         );
