@@ -8,14 +8,14 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
     } else if args.len() == 1 {
         dir = args[0].clone();
     } else {
-        println!("Too many Arguments Provided");
+        println!("ls: Too many Arguments Provided");
         return 1;
     }
 
     let files = match fs::read_dir(Path::new(&dir)) {
         Ok(res) => res,
         Err(_) => {
-            println!("Path not found");
+            println!("ls: Directory \"{}\" not Found", dir);
             return 1;
         }
     };

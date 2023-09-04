@@ -9,7 +9,7 @@ pub fn cmd_cd(args: &Vec<String>) -> i8 {
     match env::set_current_dir(Path::new(args[0].as_str())) {
         Ok(_) => return 0,
         Err(_) => {
-            println!("cd: {}: No such file or directory", args[0]);
+            println!("cd: Directory \"{}\" not Found", args[0]);
             return 1;
         }
     }
