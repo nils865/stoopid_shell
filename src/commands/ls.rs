@@ -1,3 +1,4 @@
+use colored::Colorize;
 use std::{env, fs, path::Path};
 
 pub fn cmd_ls(args: &Vec<String>) -> i8 {
@@ -21,16 +22,21 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
     };
 
     for file in files {
-        println!(
-            "{}",
-            file.unwrap()
-                .path()
-                .display()
+        let path = file.unwrap().path();
+
+        let name = String::from(
+            path.display()
                 .to_string()
                 .split("/")
                 .last()
-                .unwrap()
+                .unwrap_or_default(),
         );
+
+        if path.is_dir() {
+            println!("{}", name.bright_cyan().bold());
+        } else {
+            println!("{}", name);
+        }
     }
 
     return 0;
