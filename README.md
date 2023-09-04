@@ -7,11 +7,11 @@ A new Shell written in rust
 - [X] Add basic shell functionality
 - [ ] Reimplement alot of basic shell features
   - [ ] echo
-  - [ ] ls
+  - [X] ls
   - [ ] cp
   - [ ] mv
-  - [ ] cd
-  - [ ] exit
+  - [X] cd
+  - [X] exit
 - [ ] Add theme support
 - [ ] Add plugin support
 - [ ] Add config files
