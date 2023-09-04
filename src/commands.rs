@@ -4,10 +4,10 @@ use self::cd::cmd_cd;
 
 mod cd;
 
-fn syscalls(args: Vec<&str>) -> i8 {
-    let mut cmd_args: Vec<String> = vec![];
-
+fn args_handler(args: &Vec<&str>) -> Vec<String> {
     let mut i = 1;
+
+    let mut cmd_args: Vec<String> = vec![];
 
     while i < args.len() {
         let mut arg: String = args[i].to_string();
@@ -26,10 +26,24 @@ fn syscalls(args: Vec<&str>) -> i8 {
             }
         }
 
+        if arg.starts_with("\"") {
+            arg = arg.strip_prefix("\"").unwrap().to_string();
+        }
+
+        if arg.ends_with("\"") {
+            arg = arg.strip_suffix("\"").unwrap().to_string();
+        }
+
         cmd_args.push(arg);
 
         i += 1;
     }
+
+    return cmd_args;
+}
+
+fn syscalls(args: Vec<&str>) -> i8 {
+    let cmd_args = args_handler(&args);
 
     let mut cmd = Command::new(args[0]);
 
