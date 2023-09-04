@@ -1,5 +1,9 @@
 use std::process::Command;
 
+use self::cd::cmd_cd;
+
+mod cd;
+
 fn syscalls(args: Vec<&str>) -> i8 {
     let mut cmd_args: Vec<String> = vec![];
 
@@ -49,9 +53,10 @@ fn syscalls(args: Vec<&str>) -> i8 {
 }
 
 pub fn input_handler(args: Vec<&str>) -> i8 {
-    match args[0] {
-        "exit" => return -1,
+    return match args[0] {
+        "cd" => cmd_cd(args),
+        "exit" => -1,
 
-        _ => return syscalls(args),
-    }
+        _ => syscalls(args),
+    };
 }
