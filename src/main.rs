@@ -1,17 +1,19 @@
 use std::io::{stdin, stdout, Write};
 
 mod commands;
+mod prompt;
+
 use commands::input_handler;
+use prompt::get_prompt;
 
 fn main() {
     let running = true;
-    let prompt = "➜  ";
-    let mut exit_code: i8;
+    let mut exit_code: i8 = 0;
 
     while running {
         let mut command = String::new();
 
-        print!("{}", prompt);
+        print!("{}", get_prompt(exit_code));
         stdout().flush().expect("Failed to flush stdout");
         stdin()
             .read_line(&mut command)
