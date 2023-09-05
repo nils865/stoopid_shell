@@ -75,6 +75,7 @@ pub fn input_handler(args: Vec<&str>) -> i8 {
         "ls" => cmd_ls(&arguments),
         "echo" => cmd_echo(&arguments),
         "exit" => -1,
+        "" => 0,
 
         _ => syscalls(&command, &arguments),
     };
