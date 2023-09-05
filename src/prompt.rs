@@ -11,9 +11,9 @@ pub fn get_prompt(exit_code: i8) -> String {
         prompt.push_str(&"➜  ".red().to_string());
     }
 
-    let dir = env::current_dir().unwrap().display().to_string();
+    let dir = env::current_dir().unwrap_or_default().display().to_string();
 
-    let mut display_dir = dir.split(&get_folder_splitter()).last().unwrap();
+    let mut display_dir = dir.split(&get_folder_splitter()).last().unwrap_or_default();
 
     if display_dir == "" {
         display_dir = "/";

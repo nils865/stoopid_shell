@@ -6,7 +6,7 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
     let dir: String;
 
     if args.len() == 0 {
-        dir = env::current_dir().unwrap().display().to_string();
+        dir = env::current_dir().unwrap_or_default().display().to_string();
     } else if args.len() == 1 {
         dir = args[0].clone();
     } else {
@@ -23,7 +23,10 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
     };
 
     for file in files {
-        let path = file.unwrap().path();
+        let path = match file {
+            Ok(f) => f.path(),
+            Err(_) => continue,
+        };
 
         let name = String::from(
             path.display()

@@ -29,11 +29,11 @@ fn args_handler(args: &Vec<&str>) -> Vec<String> {
         }
 
         if arg.starts_with("\"") {
-            arg = arg.strip_prefix("\"").unwrap().to_string();
+            arg = arg.strip_prefix("\"").unwrap_or_default().to_string();
         }
 
         if arg.ends_with("\"") {
-            arg = arg.strip_suffix("\"").unwrap().to_string();
+            arg = arg.strip_suffix("\"").unwrap_or_default().to_string();
         }
 
         cmd_args.push(arg);
