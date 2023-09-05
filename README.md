@@ -6,7 +6,7 @@ A new Shell written in rust
 
 - [X] Add basic shell functionality
 - [ ] Reimplement alot of basic shell features
-  - [ ] echo
+  - [X] echo
   - [X] ls
   - [ ] cp
   - [ ] mv
