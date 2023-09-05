@@ -1,6 +1,7 @@
 use colored::Colorize;
 use std::{env, fs, path::Path};
 use stoopid_shell::get_folder_splitter;
+use stoopid_shell::syserr;
 
 pub fn cmd_ls(args: &Vec<String>) -> i8 {
     let dir: String;
@@ -10,14 +11,14 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
     } else if args.len() == 1 {
         dir = args[0].clone();
     } else {
-        println!("ls: Too many Arguments Provided");
+        syserr("ls", "Too many Arguments Provided");
         return 1;
     }
 
     let files = match fs::read_dir(Path::new(&dir)) {
         Ok(res) => res,
         Err(_) => {
-            println!("ls: Directory \"{}\" not Found", dir);
+            syserr("ls", format!("Directory \"{}\" not Found", dir).as_str());
             return 1;
         }
     };

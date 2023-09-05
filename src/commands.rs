@@ -1,4 +1,5 @@
 use std::process::Command;
+use stoopid_shell::syserr;
 
 mod cd;
 mod echo;
@@ -60,7 +61,10 @@ fn syscalls(command: &str, args: &Vec<String>) -> i8 {
             }
         }
         Err(_) => {
-            println!("Command not found: {}", command);
+            syserr(
+                "stoopid_shell",
+                format!("Command not found: {}", command).as_str(),
+            );
             1
         }
     };
