@@ -11,6 +11,13 @@ use prompt::get_prompt;
 
 fn main() {
     let running = true;
+
+    /*
+    * 0: Success
+    ! 1: Error
+    * -1: Exit shell with Success
+    ! -2: Exit shell with Error code
+    */
     let mut exit_code: i8 = 0;
 
     while running {
