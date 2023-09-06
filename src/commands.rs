@@ -6,9 +6,13 @@ mod cp;
 mod echo;
 mod exit;
 mod ls;
+mod mv;
 mod touch;
 
-use self::{cd::cmd_cd, cp::cmd_cp, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls, touch::cmd_touch};
+use self::{
+    cd::cmd_cd, cp::cmd_cp, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls, mv::cmd_mv,
+    touch::cmd_touch,
+};
 
 fn args_handler(args: &Vec<&str>) -> Vec<String> {
     let mut i = 1;
@@ -84,6 +88,7 @@ pub fn input_handler(args: Vec<&str>) -> i8 {
         "exit" => cmd_exit(&arguments),
         "touch" => cmd_touch(&arguments),
         "cp" => cmd_cp(&arguments),
+        "mv" => cmd_mv(&arguments),
         "" => 0,
 
         _ => syscalls(&command, &arguments),

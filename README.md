@@ -9,7 +9,7 @@ A new Shell written in rust
   - [X] echo
   - [X] ls
   - [X] cp
-  - [ ] mv
+  - [X] mv
   - [X] cd
   - [X] exit
   - [ ] cat
