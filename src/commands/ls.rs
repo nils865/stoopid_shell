@@ -39,7 +39,7 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
         );
 
         if path.is_dir() {
-            sysout(&name.bright_cyan().bold());
+            sysout(&format!("{}", name.bright_cyan().bold()));
         } else {
             sysout(&name);
         }
