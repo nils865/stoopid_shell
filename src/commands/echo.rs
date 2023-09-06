@@ -1,5 +1,7 @@
 use std::env;
 
+use stoopid_shell::sysout;
+
 pub fn cmd_echo(args: &Vec<String>) -> i8 {
     let mut text: String = String::new();
 
@@ -13,7 +15,7 @@ pub fn cmd_echo(args: &Vec<String>) -> i8 {
         text = String::from(format!("{} {}", text, val));
     }
 
-    println!("{}", text);
+    sysout(&text);
 
     return 0;
 }

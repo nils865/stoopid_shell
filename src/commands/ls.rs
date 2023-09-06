@@ -2,6 +2,7 @@ use colored::Colorize;
 use std::{env, fs, path::Path};
 use stoopid_shell::get_folder_splitter;
 use stoopid_shell::syserr;
+use stoopid_shell::sysout;
 
 pub fn cmd_ls(args: &Vec<String>) -> i8 {
     let dir: String;
@@ -38,9 +39,9 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
         );
 
         if path.is_dir() {
-            println!("{}", name.bright_cyan().bold());
+            sysout(&name.bright_cyan().bold());
         } else {
-            println!("{}", name);
+            sysout(&name);
         }
     }
 
