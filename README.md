@@ -14,6 +14,7 @@ A new Shell written in rust
   - [X] exit
   - [ ] cat
   - [X] touch
+  - [ ] rm
 - [ ] User Customization
   - [ ] Add theme support
   - [ ] Add plugin support
