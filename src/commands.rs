@@ -5,8 +5,9 @@ mod cd;
 mod echo;
 mod exit;
 mod ls;
+mod touch;
 
-use self::{cd::cmd_cd, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls};
+use self::{cd::cmd_cd, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls, touch::cmd_touch};
 
 fn args_handler(args: &Vec<&str>) -> Vec<String> {
     let mut i = 1;
@@ -80,6 +81,7 @@ pub fn input_handler(args: Vec<&str>) -> i8 {
         "ls" => cmd_ls(&arguments),
         "echo" => cmd_echo(&arguments),
         "exit" => cmd_exit(&arguments),
+        "touch" => cmd_touch(&arguments),
         "" => 0,
 
         _ => syscalls(&command, &arguments),
