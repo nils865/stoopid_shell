@@ -13,10 +13,12 @@ A new Shell written in rust
   - [X] cd
   - [X] exit
   - [ ] cat
-- [ ] Add theme support
-- [ ] Add plugin support
-- [ ] Add config files
-- [ ] Add git support
+  - [ ] touch
+- [ ] User Customization
+  - [ ] Add theme support
+  - [ ] Add plugin support
+  - [ ] Add config files
+- [ ] Git support
 - [ ] Add piping support
   - [ ] cat
   - [ ] Table
