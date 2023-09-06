@@ -25,8 +25,11 @@ fn main() {
                 let _ = rl.add_history_entry(l.as_str());
                 l
             }
+
             Err(ReadlineError::Interrupted) => String::new(),
+
             Err(ReadlineError::Eof) => process::exit(0),
+
             Err(_) => String::new(),
         };
 
