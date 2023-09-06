@@ -18,10 +18,7 @@ pub fn cmd_ls(args: &Vec<String>) -> i8 {
 
     let files = match fs::read_dir(Path::new(&dir)) {
         Ok(res) => res,
-        Err(_) => {
-            syserr("ls", format!("Directory \"{}\" not Found", dir).as_str());
-            return 1;
-        }
+        Err(_) => return syserr("ls", format!("Directory \"{}\" not Found", dir).as_str()),
     };
 
     for file in files {
