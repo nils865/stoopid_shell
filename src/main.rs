@@ -1,4 +1,7 @@
-use std::io::{stdin, stdout, Write};
+use std::{
+    io::{stdin, stdout, Write},
+    process,
+};
 
 mod commands;
 mod prompt;
@@ -24,7 +27,9 @@ fn main() {
         exit_code = input_handler(args);
 
         if exit_code == -1 {
-            break;
+            process::exit(0);
+        } else if exit_code == -2 {
+            process::exit(1);
         }
     }
 }

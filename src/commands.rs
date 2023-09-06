@@ -3,9 +3,10 @@ use stoopid_shell::syserr;
 
 mod cd;
 mod echo;
+mod exit;
 mod ls;
 
-use self::{cd::cmd_cd, echo::cmd_echo, ls::cmd_ls};
+use self::{cd::cmd_cd, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls};
 
 fn args_handler(args: &Vec<&str>) -> Vec<String> {
     let mut i = 1;
@@ -78,7 +79,7 @@ pub fn input_handler(args: Vec<&str>) -> i8 {
         "cd" => cmd_cd(&arguments),
         "ls" => cmd_ls(&arguments),
         "echo" => cmd_echo(&arguments),
-        "exit" => -1,
+        "exit" => cmd_exit(&arguments),
         "" => 0,
 
         _ => syscalls(&command, &arguments),
