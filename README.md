@@ -12,7 +12,7 @@ A new Shell written in rust
   - [X] mv
   - [X] cd
   - [X] exit
-  - [ ] cat
+  - [X] cat
   - [X] touch
   - [ ] rm
 - [ ] User Customization

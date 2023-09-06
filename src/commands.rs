@@ -1,6 +1,7 @@
 use std::process::Command;
 use stoopid_shell::syserr;
 
+mod cat;
 mod cd;
 mod cp;
 mod echo;
@@ -10,7 +11,7 @@ mod mv;
 mod touch;
 
 use self::{
-    cd::cmd_cd, cp::cmd_cp, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls, mv::cmd_mv,
+    cat::cmd_cat, cd::cmd_cd, cp::cmd_cp, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls, mv::cmd_mv,
     touch::cmd_touch,
 };
 
@@ -89,6 +90,7 @@ pub fn input_handler(args: Vec<&str>) -> i8 {
         "touch" => cmd_touch(&arguments),
         "cp" => cmd_cp(&arguments),
         "mv" => cmd_mv(&arguments),
+        "cat" => cmd_cat(&arguments),
         "" => 0,
 
         _ => syscalls(&command, &arguments),
