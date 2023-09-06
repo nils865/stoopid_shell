@@ -8,11 +8,12 @@ mod echo;
 mod exit;
 mod ls;
 mod mv;
+mod rm;
 mod touch;
 
 use self::{
     cat::cmd_cat, cd::cmd_cd, cp::cmd_cp, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls, mv::cmd_mv,
-    touch::cmd_touch,
+    rm::cmd_rm, touch::cmd_touch,
 };
 
 fn args_handler(args: &Vec<&str>) -> Vec<String> {
@@ -91,6 +92,7 @@ pub fn input_handler(args: Vec<&str>) -> i8 {
         "cp" => cmd_cp(&arguments),
         "mv" => cmd_mv(&arguments),
         "cat" => cmd_cat(&arguments),
+        "rm" => cmd_rm(&arguments),
         "" => 0,
 
         _ => syscalls(&command, &arguments),

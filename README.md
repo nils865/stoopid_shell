@@ -5,7 +5,7 @@ A new Shell written in rust
 ## Roadmap
 
 - [X] Add basic shell functionality
-- [ ] Reimplement alot of basic shell features
+- [X] Reimplement alot of basic shell features
   - [X] echo
   - [X] ls
   - [X] cp
@@ -14,7 +14,7 @@ A new Shell written in rust
   - [X] exit
   - [X] cat
   - [X] touch
-  - [ ] rm
+  - [X] rm
 - [ ] User Customization
   - [ ] Add theme support
   - [ ] Add plugin support
