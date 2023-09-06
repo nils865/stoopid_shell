@@ -12,7 +12,14 @@ A new Shell written in rust
   - [ ] mv
   - [X] cd
   - [X] exit
+  - [ ] cat
 - [ ] Add theme support
 - [ ] Add plugin support
 - [ ] Add config files
 - [ ] Add git support
+- [ ] Add piping support
+  - [ ] cat
+  - [ ] Table
+- [ ] Implement new commands
+  - [ ] fetch => download files from url
+  - [ ] zip => Manage zip files from the shell
