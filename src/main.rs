@@ -1,4 +1,7 @@
-use std::io::{stdin, stdout, Write};
+use std::{
+    io::{stdin, stdout, Write},
+    process,
+};
 
 mod commands;
 mod prompt;
@@ -8,6 +11,13 @@ use prompt::get_prompt;
 
 fn main() {
     let running = true;
+
+    /*
+    * 0: Success
+    ! 1: Error
+    * -1: Exit shell with Success
+    ! -2: Exit shell with Error code
+    */
     let mut exit_code: i8 = 0;
 
     while running {
@@ -24,7 +34,9 @@ fn main() {
         exit_code = input_handler(args);
 
         if exit_code == -1 {
-            break;
+            process::exit(0);
+        } else if exit_code == -2 {
+            process::exit(1);
         }
     }
 }

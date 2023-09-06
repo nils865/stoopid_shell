@@ -1,9 +1,20 @@
 use std::process::Command;
+use stoopid_shell::syserr;
 
+mod cat;
 mod cd;
+mod cp;
+mod echo;
+mod exit;
 mod ls;
+mod mv;
+mod rm;
+mod touch;
 
-use self::{cd::cmd_cd, ls::cmd_ls};
+use self::{
+    cat::cmd_cat, cd::cmd_cd, cp::cmd_cp, echo::cmd_echo, exit::cmd_exit, ls::cmd_ls, mv::cmd_mv,
+    rm::cmd_rm, touch::cmd_touch,
+};
 
 fn args_handler(args: &Vec<&str>) -> Vec<String> {
     let mut i = 1;
@@ -28,11 +39,11 @@ fn args_handler(args: &Vec<&str>) -> Vec<String> {
         }
 
         if arg.starts_with("\"") {
-            arg = arg.strip_prefix("\"").unwrap().to_string();
+            arg = arg.strip_prefix("\"").unwrap_or_default().to_string();
         }
 
         if arg.ends_with("\"") {
-            arg = arg.strip_suffix("\"").unwrap().to_string();
+            arg = arg.strip_suffix("\"").unwrap_or_default().to_string();
         }
 
         cmd_args.push(arg);
@@ -59,7 +70,10 @@ fn syscalls(command: &str, args: &Vec<String>) -> i8 {
             }
         }
         Err(_) => {
-            println!("Command not found: {}", command);
+            syserr(
+                "stoopid_shell",
+                format!("Command not found: {}", command).as_str(),
+            );
             1
         }
     };
@@ -72,7 +86,14 @@ pub fn input_handler(args: Vec<&str>) -> i8 {
     return match command {
         "cd" => cmd_cd(&arguments),
         "ls" => cmd_ls(&arguments),
-        "exit" => -1,
+        "echo" => cmd_echo(&arguments),
+        "exit" => cmd_exit(&arguments),
+        "touch" => cmd_touch(&arguments),
+        "cp" => cmd_cp(&arguments),
+        "mv" => cmd_mv(&arguments),
+        "cat" => cmd_cat(&arguments),
+        "rm" => cmd_rm(&arguments),
+        "" => 0,
 
         _ => syscalls(&command, &arguments),
     };
